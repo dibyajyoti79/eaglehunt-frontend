@@ -1,0 +1,142 @@
+.user-info-modal {
+    max-width: 800px !important;
+    max-height: 100vh !important; 
+    overflow-y: auto !important; 
+    scrollbar-width: thin; 
+  }
+  
+  .modal::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modal::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 10px;
+  }
+  
+
+
+
+
+
+
+
+/* UserInfoModal.css */
+
+.react-datepicker {
+  background-color: #1f1f1f; /* Dark background */
+  border: 1px solid #444; /* Border to match the theme */
+  color: #ffffff; /* White text color */
+}
+
+.react-datepicker__header {
+  background-color: #1f1f1f; /* Dark background for the header */
+  border-bottom: 1px solid #444; /* Border to match the theme */
+}
+
+.react-datepicker__current-month {
+  color: #ffffff; /* White text for the current month */
+  font-weight: bold;
+  font-size: 20px !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #ffffff; /* White text for days */
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #ff7f50; /* Highlighted orange for selected day */
+  color: #ffffff;
+}
+
+.react-datepicker__day--today {
+  background-color: #444; /* Different shade for today */
+  color: #ffffff;
+}
+
+.react-datepicker__triangle {
+  display: none; /* Hide the triangle */
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+  border-color: #ffffff; /* White arrows */
+}
+
+/* Styling the month and year dropdowns */
+.react-datepicker__month-dropdown-container,
+.react-datepicker__year-dropdown-container {
+  color: #ffffff; /* White text for dropdowns */
+}
+
+.react-datepicker__month-dropdown,
+.react-datepicker__year-dropdown {
+  background-color: #333; /* Dark background for dropdowns */
+}
+
+.react-datepicker__month-option,
+.react-datepicker__year-option {
+  background-color: #333;
+  color: #ffffff;
+}
+
+.react-datepicker__month-option:hover,
+.react-datepicker__year-option:hover {
+  background-color: #ff7f50; /* Orange hover effect */
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #ffffff; /* White navigation arrows */
+}
+
+/* Customizing the border for focus state */
+.react-datepicker__input-container input {
+  border: 1px solid #444; /* Dark border */
+  background-color: #1f1f1f; /* Dark background for input */
+  color: #ffffff; /* White text for input */
+}
+
+.react-datepicker__input-container input:focus {
+  border-color: #ff7f50; /* Orange border on focus */
+  box-shadow: none; /* Remove the default box-shadow */
+}
+
+
+/* UserInfoModal.css */
+
+/* Update the hover background for dates */
+.react-datepicker__day:hover {
+  background-color: #ff7f50; /* Darker background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
+/* For keyboard navigation highlighting */
+.react-datepicker__day--keyboard-selected:hover {
+  background-color: #ff7f50; /* Orange hover effect for keyboard-selected date */
+  color: #ffffff;
+}
+
+
+
+
+
+
+
+
+/* Custom DatePicker Popper Container Styling */
+.custom-datepicker-container {
+  position: absolute; /* Ensure it's absolutely positioned */
+  z-index: 1050; /* High z-index to ensure it appears above other elements */
+  top: 100%; /* Position it just below the input */
+  left: 0; /* Align with the left edge of the input */
+}
+
+/* Ensure DatePicker input is positioned correctly */
+.date-picker-input {
+  position: relative; /* This ensures that the popper is positioned relative to the input */
+}
+
+
