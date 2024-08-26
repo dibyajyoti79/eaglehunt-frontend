@@ -1,1 +1,0 @@
-# eaglehunt_frontend
