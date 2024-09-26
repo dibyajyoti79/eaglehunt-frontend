@@ -6,6 +6,7 @@ import SubscribeModal from "./SubscribeModal";
 const Pricing = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
+  const [plan, setPlan] = useState("");
 
   return (
     <div className="mt-20">
@@ -14,10 +15,7 @@ const Pricing = () => {
       </h2>
       <div className="flex flex-wrap">
         {pricingOptions.map((option, index) => (
-          <div
-            key={index}
-            className="w-full sm:w-1/2 lg:w-1/4 p-2 hover:scale-105 transition duration-200 hover:shadow-lg"
-          >
+          <div key={index} className="w-full sm:w-1/2 lg:w-1/4 p-2 ">
             <div className="p-10 border border-neutral-700 rounded-xl">
               <p className="text-3xl text-center mb-4">{option.plan}</p>
               <p className="text-xl text-center mb-4">
@@ -43,7 +41,10 @@ const Pricing = () => {
                   rel="noopener noreferrer"
                   // onMouseEnter={() => setIsTooltipVisible(true)}
                   // onMouseLeave={() => setIsTooltipVisible(false)}
-                  onClick={() => setIsSubscribeModalOpen(true)}
+                  onClick={() => {
+                    setPlan(option.plan);
+                    setIsSubscribeModalOpen(true);
+                  }}
                 >
                   Subscribe
                 </span>
@@ -54,6 +55,7 @@ const Pricing = () => {
                 )}
                 {isSubscribeModalOpen && (
                   <SubscribeModal
+                    planName={plan}
                     closeModal={() => setIsSubscribeModalOpen(false)}
                   />
                 )}
