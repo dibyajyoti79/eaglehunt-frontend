@@ -34,19 +34,19 @@ export const testimonials = [
     user: "Satyabrata Moharana",
     company: "Stellar Solutions",
     image: teamMember1,
-    text: "Last year, I decided to invest Rs. 20,000 with Eagle Hunt Capitalist for 12 months. At the end of the term, my investment grew to Rs. 25,000. The 25% return was fantastic, and it gave me the confidence to plan my future investments with them. Their customer service is top-notch too!",
+    text: "I invested ₹20,000 with Eagle Hunt Capitalist for 6 months, and I received ₹22,400 back. The 12% return was exactly as promised. It was a great way to grow my savings in a short period, and the process was smooth and transparent.",
   },
   {
     user: "Pothineni Ram",
     company: "Blue Horizon Technologies",
     image: teamMember2,
-    text: "I took a leap and invested Rs. 15,000 for 2 years with Eagle Hunt Capitalist. After 24 months, my investment grew to Rs. 33,750. , thanks to the 50% return. The growth exceeded my expectations, and it’s clear that Eagle Hunt Capitalist truly understands how to maximize returns. I’m already planning my next investment!",
+    text: "Last year, I decided to invest ₹30,000 with Eagle Hunt Capitalist for 12 months. At the end of the term, my investment grew to ₹37,500. The 25% return was fantastic, and it gave me the confidence to plan my future investments with them. Their customer service is top-notch too!",
   },
   {
     user: "Tushar Mahuri",
     company: "Finable",
     image: teamMember3,
-    text: "I invested Rs. 10,000 with Eagle Hunt Capitalist for 6 months, and I received Rs. 38,146.97 back. The 13% return was exactly as promised. It was a great way to grow my savings in a short period, and the process was smooth and transparent.",
+    text: "I took a leap and invested ₹40,000 for 2 years with Eagle Hunt Capitalist. After 24 months, my investment grew to ₹62,000, thanks to the 55% return. The growth exceeded my expectations, and it’s clear that Eagle Hunt Capitalist truly understands how to maximize returns. I’m already planning my next investment!",
   },
 ];
 
