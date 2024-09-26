@@ -3,48 +3,36 @@ import { X } from "lucide-react";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 
-const LoginModal = ({
-  closeModal,
-  onLoginSuccess,
-  setIsChangePasswordModalOpen,
-}) => {
-  const [email, setEmail] = useState("");
+const ChangePasswordModal = ({ closeModal }) => {
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
     setLoading(true);
     try {
+      const token = Cookies.get("userAuthToken");
+
       const response = await fetch(
-        "https://eaglehunt-api.onrender.com/api/v1/user/login",
+        "https://eaglehunt-api.onrender.com/api/v1/user/change-password",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({ newPassword: password }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Login failed. Please check your credentials.");
+        throw new Error("Password change failed. Please contact support.");
       }
-
-      const data = await response.json();
-      const { token, firstLogin } = data.data; // Assuming the token is returned in the response
-
-      // Store token in cookies with 15 days expiration
-      Cookies.set("userAuthToken", token, { expires: 15 });
-
-      if (firstLogin) {
-        toast.success("Login successful!, please change your password");
-        closeModal();
-        setIsChangePasswordModalOpen(true);
-      } else {
-        toast.success("Login successful!");
-        closeModal();
-      }
-      onLoginSuccess();
+      closeModal();
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -55,26 +43,26 @@ const LoginModal = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center modal-overlay z-50">
       <div className="modal shadow-lg">
-        <h2 className="text-center">Login</h2>
+        <h2 className="text-center">Change Password</h2>
         <button className="modal-close" onClick={closeModal}>
           <X />
         </button>
         <div className="space-y-4">
-          <div>
-            <label className="block">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
-            />
-          </div>
           <div>
             <label className="block">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
+            />
+          </div>
+          <div>
+            <label className="block">Confirm Password</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
             />
           </div>
@@ -87,7 +75,7 @@ const LoginModal = ({
             }`}
             disabled={loading} // Disable button when loading
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </div>
       </div>
@@ -95,4 +83,4 @@ const LoginModal = ({
   );
 };
 
-export default LoginModal;
+export default ChangePasswordModal;

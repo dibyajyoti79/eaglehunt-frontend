@@ -5,11 +5,14 @@ import { navItems } from "../constants";
 import LoginModal from "./LoginModal";
 import UserInfoModal from "./UserInfoModal";
 import Cookies from "js-cookie";
+import ChangePasswordModal from "./ChangePasswordModal";
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isUserInfoModalOpen, setIsUserInfoModalOpen] = useState(false);
+  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =
+    useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -57,7 +60,7 @@ const Navbar = () => {
     setIsLoginModalOpen(!isLoginModalOpen);
   };
 
-  const handleLoginSuccess = (initial) => {
+  const handleLoginSuccess = () => {
     const token = Cookies.get("userAuthToken");
     if (token) {
       fetchUserProfile(token);
@@ -154,9 +157,15 @@ const Navbar = () => {
         <LoginModal
           closeModal={toggleLoginModal}
           onLoginSuccess={handleLoginSuccess}
+          setIsChangePasswordModalOpen={setIsChangePasswordModalOpen}
         />
       )}
-
+      {/* Login Modal */}
+      {isChangePasswordModalOpen && (
+        <ChangePasswordModal
+          closeModal={() => setIsChangePasswordModalOpen(false)}
+        />
+      )}
       {/* User Info Modal */}
       {isUserInfoModalOpen && (
         <UserInfoModal
