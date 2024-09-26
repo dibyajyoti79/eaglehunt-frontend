@@ -1,100 +1,45 @@
-import { useState } from 'react';
-import { X } from 'lucide-react';
-import VerifyModal from './VerifyModal';
-import Api from '../constants/Api';
-import qs from 'qs';
-import Swal from 'sweetalert2';
+import { useState } from "react";
+import { X } from "lucide-react";
+import { toast } from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const LoginModal = ({ closeModal, onLoginSuccess }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showVerifyModal, setShowVerifyModal] = useState(false);
-
-  const clearFields = () => {
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    if (password !== confirmPassword) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Passwords do not match!",
-            background: "rgb(38,38,38)",
-            color: "#ffffff",
-            timer: 1500,
-            showConfirmButton: false,
-          });
-      return;
-    }
-
-    const credentials = qs.stringify({
-      username: email,
-      password: password,
-      grant_type: '',
-    });
-
+    setLoading(true);
     try {
-      const tokenResponse = await Api.getToken(credentials);
+      const response = await fetch(
+        "https://eaglehunt-api.onrender.com/api/v1/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
-      // Store tokens in localStorage
-      localStorage.setItem('accessToken', tokenResponse.access_token);
-      localStorage.setItem('refreshToken', tokenResponse.refresh_token);
+      if (!response.ok) {
+        throw new Error("Login failed. Please check your credentials.");
+      }
 
-      // Extract and store the initial of the email
-      const emailInitial = email.charAt(0).toUpperCase();
-      localStorage.setItem('emailInitial', emailInitial);
+      const data = await response.json();
+      const { token } = data.data; // Assuming the token is returned in the response
 
-      // Notify Navbar about the login success
-      onLoginSuccess(emailInitial);
+      // Store token in cookies with 15 days expiration
+      Cookies.set("userAuthToken", token, { expires: 15 });
 
-    //   fetchUserData();
-      closeModal();
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Login Successful',
-        text: 'You have successfully logged in!',
-        background: 'rgb(38,38,38)', // Black background
-        color: '#fff', // White text
-        timer: 2000,
-        showConfirmButton: false,
-      });
+      toast.success("Login successful!");
+      onLoginSuccess(); // Call the success callback function
+      closeModal(); // Close the modal after successful login
     } catch (error) {
-      console.error('Login failed:', error);
-      Swal.fire({
-        icon: "error",
-        title: "Login Failed",
-        text: "Account is not verified or Wrong credentials",
-        background: "rgb(38,38,38)",
-        color: "#ffffff",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
-  };
-
-//   const fetchUserData = async () => {
-//     const accessToken = localStorage.getItem('accessToken');
-
-//     if (!accessToken) {
-//       console.error('Access token not found.');
-//       return;
-//     }
-
-//     try {
-//       const userDetails = await Api.getUserDetails(accessToken);
-//       console.log('User Details:', userDetails);
-//     } catch (error) {
-//       console.error('Error fetching user details:', error);
-//     }
-//   };
-
-  const openVerifyModal = () => {
-    setShowVerifyModal(true);
   };
 
   return (
@@ -123,44 +68,19 @@ const LoginModal = ({ closeModal, onLoginSuccess }) => {
               className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
             />
           </div>
-          <div>
-            <label className="block">Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
-            />
-          </div>
-          <div className="flex justify-between">
-            <button
-              onClick={clearFields}
-              className="bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded-md"
-            >
-              Clear
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-md text-white"
-            >
-              Login
-            </button>
-          </div>
         </div>
-        <p className="mt-4 text-sm text-center text-gray-400">
-          If you have not activated your account, please activate it first. An OTP has been sent to your email.
-        </p>
-        <button
-          onClick={openVerifyModal}
-          className="mt-4 text-orange-400 underline text-center block w-full"
-        >
-          Verify
-        </button>
+        <div className="w-full mt-4">
+          <button
+            onClick={handleSubmit}
+            className={`bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-md text-white w-full ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={loading} // Disable button when loading
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </div>
       </div>
-
-      {showVerifyModal && (
-        <VerifyModal closeModal={() => setShowVerifyModal(false)} />
-      )}
     </div>
   );
 };

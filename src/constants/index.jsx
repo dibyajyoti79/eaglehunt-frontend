@@ -1,4 +1,14 @@
-import { BotMessageSquare, Fingerprint, ShieldHalf, Scale, GlobeLock, ShieldCheck, Lock, Lightbulb, Eye } from "lucide-react";
+import {
+  BotMessageSquare,
+  Fingerprint,
+  ShieldHalf,
+  Scale,
+  GlobeLock,
+  ShieldCheck,
+  Lock,
+  Lightbulb,
+  Eye,
+} from "lucide-react";
 
 // import user1 from "../assets/profile-pictures/user1.jpg";
 // import user2 from "../assets/profile-pictures/user2.jpg";
@@ -7,11 +17,9 @@ import { BotMessageSquare, Fingerprint, ShieldHalf, Scale, GlobeLock, ShieldChec
 // import user5 from "../assets/profile-pictures/user5.jpg";
 // import user6 from "../assets/profile-pictures/user6.jpg";
 
-
 import teamMember1 from "../assets/teamMember1.png";
 import teamMember2 from "../assets/teamMember2.png";
 import teamMember3 from "../assets/teamMember3.png";
-
 
 export const navItems = [
   { label: "Belief", href: "#belief" },
@@ -20,7 +28,6 @@ export const navItems = [
   { label: "Testimonials", href: "#testimonials" },
   // { label: "Teams", href: "#teams" },
 ];
-
 
 export const testimonials = [
   {
@@ -100,7 +107,6 @@ export const beliefs = [
   },
 ];
 
-
 export const checklistItems = [
   {
     title: "Mission",
@@ -116,8 +122,9 @@ export const checklistItems = [
 
 export const pricingOptions = [
   {
-    title: "6 Months Plan",
-    price: "13% ROI",
+    plan: "Bronze",
+    duration: "6 Month",
+    price: "12% ROI",
     features: [
       "Private Investment Management",
       "Dedicated Account Manager",
@@ -126,7 +133,8 @@ export const pricingOptions = [
     ],
   },
   {
-    title: "12 Months Plan",
+    plan: "Silver",
+    duration: "12 Month",
     price: "25% ROI",
     features: [
       "Private Investment Management",
@@ -136,7 +144,8 @@ export const pricingOptions = [
     ],
   },
   {
-    title: "18 Months Plan",
+    plan: "Gold",
+    duration: "18 Month",
     price: "38% ROI",
     features: [
       "Private Investment Management",
@@ -146,8 +155,9 @@ export const pricingOptions = [
     ],
   },
   {
-    title: "24 Months Plan",
-    price: "50% ROI",
+    plan: "Diamond",
+    duration: "24 Month",
+    price: "55% ROI",
     features: [
       "Private Investment Management",
       "Complete VIP Account Access",
@@ -195,7 +205,6 @@ export const teams = [
     },
   },
 ];
-
 
 export const resourcesLinks = [
   { href: "#", text: "Getting Started" },

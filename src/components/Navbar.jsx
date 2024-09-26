@@ -1,20 +1,52 @@
-import { Menu, X } from "lucide-react";
+import { Loader, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { navItems } from "../constants";
 import LoginModal from "./LoginModal";
 import UserInfoModal from "./UserInfoModal";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isUserInfoModalOpen, setIsUserInfoModalOpen] = useState(false);
-  const [emailInitial, setEmailInitial] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchUserProfile = async (token) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://eaglehunt-api.onrender.com/api/v1/user/profile",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`, // Pass the token in the Authorization header
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch user profile.");
+      }
+
+      const profileData = await response.json();
+      setUserProfile(profileData.data); // Set the user profile data
+      console.log("User Profile:", profileData); // Log the user profile data
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Retrieve the email initial from localStorage on component mount
-    const storedEmailInitial = localStorage.getItem('emailInitial');
-    setEmailInitial(storedEmailInitial || '');
+    const token = Cookies.get("userAuthToken");
+    if (token) {
+      fetchUserProfile(token);
+      setIsLoggedIn(true);
+    }
   }, []);
 
   const toggleNavbar = () => {
@@ -26,10 +58,15 @@ const Navbar = () => {
   };
 
   const handleLoginSuccess = (initial) => {
-    setEmailInitial(initial);
+    const token = Cookies.get("userAuthToken");
+    if (token) {
+      fetchUserProfile(token);
+      setIsLoggedIn(true);
+    }
   };
 
   const openUserInfoModal = () => {
+    if (loading || !userProfile) return;
     setIsUserInfoModalOpen(true);
   };
 
@@ -51,12 +88,16 @@ const Navbar = () => {
               ))}
             </ul>
             <div className="hidden lg:flex justify-center space-x-12 items-center px-4">
-              {emailInitial ? (
+              {isLoggedIn ? (
                 <div
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-500 text-white font-bold cursor-pointer"
                   onClick={openUserInfoModal}
                 >
-                  {emailInitial}
+                  {loading ? (
+                    <Loader size={14} className="animate-spin" />
+                  ) : (
+                    userProfile && userProfile.firstName.slice(0, 1)
+                  )}
                 </div>
               ) : (
                 <button
@@ -83,12 +124,16 @@ const Navbar = () => {
                 ))}
               </ul>
               <div className="flex space-x-6">
-                {emailInitial ? (
+                {isLoggedIn ? (
                   <div
                     className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-500 text-white font-bold cursor-pointer"
                     onClick={openUserInfoModal}
                   >
-                    {emailInitial}
+                    {loading ? (
+                      <Loader size={14} className="animate-spin" />
+                    ) : (
+                      userProfile && userProfile.firstName.slice(0, 1)
+                    )}
                   </div>
                 ) : (
                   <button
@@ -106,12 +151,18 @@ const Navbar = () => {
 
       {/* Login Modal */}
       {isLoginModalOpen && (
-        <LoginModal closeModal={toggleLoginModal} onLoginSuccess={handleLoginSuccess} />
+        <LoginModal
+          closeModal={toggleLoginModal}
+          onLoginSuccess={handleLoginSuccess}
+        />
       )}
 
       {/* User Info Modal */}
       {isUserInfoModalOpen && (
-        <UserInfoModal closeModal={() => setIsUserInfoModalOpen(false)} />
+        <UserInfoModal
+          closeModal={() => setIsUserInfoModalOpen(false)}
+          userProfile={userProfile}
+        />
       )}
     </>
   );
