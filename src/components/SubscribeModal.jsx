@@ -15,6 +15,10 @@ const SubscribeModal = ({ closeModal, planName }) => {
     const serviceId = "service_2jff6b5";
     const templateId = "template_vebfc8q";
     const publicKey = "HD33bDqy3Co5QiXK4";
+    if (!name || !contact || !amount || !plan) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     try {
       setLoading(true);
 
@@ -44,7 +48,7 @@ const SubscribeModal = ({ closeModal, planName }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center modal-overlay z-50">
       <div className="modal shadow-lg">
-        <h2 className="text-center">Login</h2>
+        <h2 className="text-center">Your detail</h2>
         <button className="modal-close" onClick={closeModal}>
           <X />
         </button>
@@ -92,14 +96,20 @@ const SubscribeModal = ({ closeModal, planName }) => {
           </div>
         </div>
         <div className="w-full mt-4">
-          <button
-            onClick={handleSubmit}
-            className={`bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-md text-white w-full ${
-              loading ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+          <a
+            href={`https://wa.me/916370500097?text=Name:%20${name}%0AContact%20Number:%20${contact}%0AAmount:%20${amount}%0APlan:%20${plan}`}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            {loading ? "Submitting..." : "Submit"}
-          </button>
+            <button
+              onClick={handleSubmit}
+              className={`bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-md text-white w-full ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </button>
+          </a>
         </div>
       </div>
     </div>
