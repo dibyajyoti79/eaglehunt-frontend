@@ -121,7 +121,7 @@ const Navbar = () => {
             <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12 flex flex-col justify-center items-center lg:hidden">
               <ul>
                 {navItems.map((item, index) => (
-                  <li key={index} className="py-4">
+                  <li key={index} className="py-4 text-center">
                     <a href={item.href}>{item.label}</a>
                   </li>
                 ))}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { Eye, EyeOff, X } from "lucide-react";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 
@@ -7,6 +7,7 @@ const ChangePasswordModal = ({ closeModal }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
@@ -57,14 +58,27 @@ const ChangePasswordModal = ({ closeModal }) => {
               className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
             />
           </div>
-          <div>
+          <div className="relative">
             <label className="block">Confirm Password</label>
             <input
-              type="password"
+              type={isShow ? "text" : "password"}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
             />
+            {!isShow ? (
+              <Eye
+                className="text-gray-400 text-sm absolute right-4 top-11 transform -translate-y-1/2 cursor-pointer"
+                size={20}
+                onClick={() => setIsShow(!isShow)}
+              />
+            ) : (
+              <EyeOff
+                className="text-gray-400 text-sm absolute right-4 top-11 transform -translate-y-1/2 cursor-pointer"
+                size={20}
+                onClick={() => setIsShow(!isShow)}
+              />
+            )}
           </div>
         </div>
         <div className="w-full mt-4">

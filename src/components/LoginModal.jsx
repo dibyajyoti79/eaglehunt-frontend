@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { Eye, EyeOff, X } from "lucide-react";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 
@@ -11,8 +11,18 @@ const LoginModal = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   const handleSubmit = async () => {
+    if (!email || !password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+    // validate email
+    if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+      toast.error("Invalid email format");
+      return;
+    }
     setLoading(true);
     try {
       const response = await fetch(
@@ -67,16 +77,31 @@ const LoginModal = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
+              required
             />
           </div>
-          <div>
+          <div className="relative">
             <label className="block">Password</label>
             <input
-              type="password"
+              type={isShow ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 rounded-md focus:outline-none focus:ring"
+              required
             />
+            {!isShow ? (
+              <Eye
+                className="text-gray-400 text-sm absolute right-4 top-11 transform -translate-y-1/2 cursor-pointer"
+                size={20}
+                onClick={() => setIsShow(!isShow)}
+              />
+            ) : (
+              <EyeOff
+                className="text-gray-400 text-sm absolute right-4 top-11 transform -translate-y-1/2 cursor-pointer"
+                size={20}
+                onClick={() => setIsShow(!isShow)}
+              />
+            )}
           </div>
         </div>
         <div className="w-full mt-4">

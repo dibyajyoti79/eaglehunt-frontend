@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { pricingOptions } from "../constants";
+import SubscribeModal from "./SubscribeModal";
 
 const Pricing = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
 
   return (
     <div className="mt-20">
@@ -34,20 +36,26 @@ const Pricing = () => {
                 ))}
               </ul>
               <div className="relative">
-                <a
-                  href={`https://wa.me/916370500097?text=I%20am%20interested%20in%20${option.plan}%20plan.`}
-                  className="inline-flex justify-center items-center text-center w-full h-12 p-5 mt-20 tracking-tight text-xl hover:bg-orange-900 border border-orange-900 rounded-lg transition duration-200"
-                  target="_blank"
+                <span
+                  // href={`https://wa.me/916370500097?text=I%20am%20interested%20in%20${option.plan}%20plan.`}
+                  className="inline-flex justify-center items-center text-center w-full h-12 p-5 mt-20 tracking-tight text-xl hover:bg-orange-900 border border-orange-900 rounded-lg transition duration-200 cursor-pointer"
+                  // target="_blank"
                   rel="noopener noreferrer"
                   // onMouseEnter={() => setIsTooltipVisible(true)}
                   // onMouseLeave={() => setIsTooltipVisible(false)}
+                  onClick={() => setIsSubscribeModalOpen(true)}
                 >
                   Subscribe
-                </a>
+                </span>
                 {isTooltipVisible && (
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-10 bg-gray-800 text-white text-sm rounded py-1 px-2">
                     Need to have WhatsApp installed on your device
                   </div>
+                )}
+                {isSubscribeModalOpen && (
+                  <SubscribeModal
+                    closeModal={() => setIsSubscribeModalOpen(false)}
+                  />
                 )}
               </div>
             </div>
