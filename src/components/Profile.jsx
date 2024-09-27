@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Link } from "react-router-dom";
+import WithdrawModal from "./WithdrawModal";
 
 const Profile = () => {
   const [expectedAmount, setExpectedAmount] = useState(0);
@@ -14,6 +15,7 @@ const Profile = () => {
   const [amountOnSelectedDate, setAmountOnSelectedDate] = useState(0);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const handleLogout = () => {
     Cookies.remove("userAuthToken");
     window.location.href = "/";
@@ -236,6 +238,15 @@ const Profile = () => {
             </p>
           </div>
         </div>
+        {/* Withdraw Button */}
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() => setIsWithdrawModalOpen(true)}
+            className="py-3 px-6 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+          >
+            Withdraw
+          </button>
+        </div>
 
         {/* Investment Details Section */}
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
@@ -317,6 +328,13 @@ const Profile = () => {
           </button>
         </div>
       </div>
+
+      {isWithdrawModalOpen && (
+        <WithdrawModal
+          closeModal={() => setIsWithdrawModalOpen(false)}
+          userProfile={userProfile}
+        />
+      )}
     </>
   );
 };
