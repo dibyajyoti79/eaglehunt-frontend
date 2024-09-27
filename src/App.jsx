@@ -82,16 +82,16 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
 
         {/* Admin Route */}
-        <Route
+        {/* <Route
           path="/admin"
           element={
-            isAdminAuthenticated ? (
+            !isAdminAuthenticated ? (
               <AdminPanel />
             ) : (
               <AdminLogin onLogin={handleAdminLogin} />
             )
           }
-        />
+        /> */}
       </Routes>
     </Router>
   );
