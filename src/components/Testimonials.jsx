@@ -12,11 +12,11 @@ const Testimonials = () => {
             <div className="bg-neutral-900 rounded-md p-6 text-md border border-neutral-800 font-thin">
               <p>{testimonial.text}</p>
               <div className="flex mt-8 items-start">
-                <img
+                {/* <img
                   className="w-12 h-12 mr-6 rounded-full border border-neutral-300"
                   src={testimonial.image}
                   alt=""
-                />
+                /> */}
                 <div>
                   <h6>{testimonial.user}</h6>
                   <span className="text-sm font-normal italic text-neutral-600">

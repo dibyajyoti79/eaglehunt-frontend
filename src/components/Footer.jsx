@@ -56,36 +56,16 @@ const Footer = () => {
           &copy; {new Date().getFullYear()} EHC. All rights reserved.
         </p>
         <div className="flex space-x-6 mb-4">
-          <a
-            href="https://www.linkedin.com/company/ehc"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
+          <a href="#hero" aria-label="LinkedIn">
             <Linkedin className="text-neutral-400 hover:text-blue-600 transition duration-200 w-6 h-6" />
           </a>
-          <a
-            href="https://www.facebook.com/ehc"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
+          <a href="#hero" rel="noopener noreferrer" aria-label="Facebook">
             <Facebook className="text-neutral-400 hover:text-blue-600 transition duration-200 w-6 h-6" />
           </a>
-          <a
-            href="https://twitter.com/ehc"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-          >
+          <a href="#hero" aria-label="Twitter">
             <Twitter className="text-neutral-400 hover:text-blue-600 transition duration-200 w-6 h-6" />
           </a>
-          <a
-            href="https://www.instagram.com/ehc"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
+          <a href="#hero" aria-label="Instagram">
             <Instagram className="text-neutral-400 hover:text-blue-600 transition duration-200 w-6 h-6" />
           </a>
         </div>
