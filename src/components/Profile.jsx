@@ -16,7 +16,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const handleLogout = () => {
     Cookies.remove("userAuthToken");
-    window.location.reload();
+    window.location.href = "/";
+    // window.location.reload();
   };
 
   function calculateDateDifference(investmentDate, date = new Date()) {
@@ -44,20 +45,16 @@ const Profile = () => {
   const calculateInterest = (investAmount, interestRate, investmentDate) => {
     // Calculate the number of days passed since investment
     const daysPassed = calculateDateDifference(investmentDate);
+    if (daysPassed <= 0)
+      return { interestEarned: 0, totalAmount: investAmount };
 
     // Convert annual interest rate to daily interest rate
     const dailyInterestRate = interestRate / 365;
-    console.table([
-      investAmount,
-      dailyInterestRate,
-      daysPassed,
-      investmentDate,
-    ]);
 
     // Calculate interest earned based on days passed
     const interestEarned =
       (investAmount * dailyInterestRate * daysPassed) / 100;
-    console.log("interestEarned", interestEarned);
+
     const totalAmount = investAmount + interestEarned;
 
     return {
@@ -74,7 +71,8 @@ const Profile = () => {
     // Calculate the number of days passed since investment
     const daysPassed = calculateDateDifference(investmentDate, date);
 
-    if (daysPassed <= 0) return { interestEarned: 0, totalAmount: 0 };
+    if (daysPassed <= 0)
+      return { interestEarned: 0, totalAmount: investAmount };
 
     // Convert annual interest rate to daily interest rate
     const dailyInterestRate = interestRate / 365;
@@ -151,11 +149,14 @@ const Profile = () => {
 
   const InvestmentPieChart = () => {
     const data = {
-      labels: ["Invest Amount", "Final Amount"],
+      labels: ["Invest Amount", "Est. Return"],
       datasets: [
         {
-          label: "Investment Distribution",
-          data: [userProfile.investAmount, expectedAmount],
+          //   label: "Investment Distribution",
+          data: [
+            userProfile.investAmount,
+            expectedAmount - userProfile.investAmount,
+          ],
           backgroundColor: ["#FF6384", "#36A2EB"],
           hoverBackgroundColor: ["#FF6384", "#36A2EB"],
         },
