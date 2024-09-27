@@ -14,7 +14,7 @@ const Profile = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [amountOnSelectedDate, setAmountOnSelectedDate] = useState(0);
   const [userProfile, setUserProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const handleLogout = () => {
     Cookies.remove("userAuthToken");
@@ -174,8 +174,12 @@ const Profile = () => {
       </div>
     );
   }
-  if (!userProfile) {
-    return <div>No user profile found</div>;
+  if (!loading && !userProfile) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div>No user profile found</div>
+      </div>
+    );
   }
 
   return (
