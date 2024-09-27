@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2"; // Import SweetAlert2
 import Navbar from "./components/Navbar";
@@ -11,6 +16,7 @@ import Testimonials from "./components/Testimonials";
 // import Teams from "./components/Teams";
 import AdminPanel from "./components/AdminPanel";
 import AdminLogin from "./components/AdminLogin";
+import Profile from "./components/Profile";
 
 const App = () => {
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
@@ -73,6 +79,7 @@ const App = () => {
             </>
           }
         />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Admin Route */}
         <Route
