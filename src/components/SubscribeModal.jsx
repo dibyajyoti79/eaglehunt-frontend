@@ -95,6 +95,16 @@ const SubscribeModal = ({ closeModal, planName }) => {
             />
           </div>
         </div>
+        <p className="text-xs mt-5 ">
+          By submitting this form, you agree to our{" "}
+          <a
+            href="/termsandcondition.html"
+            target="_blank"
+            className="text-blue-500"
+          >
+            Terms and Conditions
+          </a>
+        </p>
         <div className="w-full mt-4">
           <a
             href={`https://wa.me/916370500097?text=Name:%20${name}%0AContact%20Number:%20${contact}%0AAmount:%20${amount}%0APlan:%20${plan}`}
