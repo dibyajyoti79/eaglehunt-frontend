@@ -34,31 +34,31 @@ export const testimonials = [
     user: "Jagannath Behera",
     company: "Stellar Solutions",
     image: teamMember1,
-    text: "I invested ₹20,000 with Eagle Hunt Capitalist for 6 months and received ₹22,400 back, a 12% return exactly as promised. A fantastic way to grow my savings in a smooth manner!",
+    text: "Investing ₹20,000 with Eagle Hunt Capitalist for 6 months gave me ₹22,400 back, providing a 12% return as promised. It was a great way to grow my savings effortlessly!",
   },
   {
     user: "Biswajit Chakraborty",
     company: "Blue Horizon Technologies",
     image: teamMember2,
-    text: "Last year, I invested ₹30,000 with Eagle Hunt Capitalist for 12 months. My investment grew to ₹37,500 at a 25% return. Their service and support made my experience remarkable and easy!",
+    text: "I invested ₹30,000 with Eagle Hunt Capitalist for 12 months last year. The investment grew to ₹37,500 with a 25% return. Their support and service made it an easy and memorable experience!",
   },
   {
     user: "Tushar Mahuri",
     company: "Finable",
     image: teamMember3,
-    text: "I took a leap and invested ₹40,000 for 2 years with Eagle Hunt Capitalist. My investment grew to ₹62,000, a 55% return. The growth exceeded expectations and proved their expertise!",
+    text: "I invested ₹40,000 for 2 years with Eagle Hunt Capitalist, and it grew to ₹62,000, delivering a 55% return. Their expertise exceeded my expectations!",
   },
   {
     user: "Ankita Roy",
     company: "NextWave Innovations",
     image: teamMember3,
-    text: "I decided to invest ₹50,000 with Eagle Hunt Capitalist for 3 years, and my return was ₹85,000, a 70% growth. Their professionalism and consistent results are truly commendable!",
+    text: "I chose to invest ₹80,000 with Eagle Hunt Capitalist for 1 year, resulting in ₹1,00,000 back—a 25% growth. Their consistent performance and professionalism impressed me!",
   },
   {
     user: "Rahul Sharma",
     company: "TechSphere Solutions",
     image: teamMember3,
-    text: "Eagle Hunt Capitalist helped me grow my investment of ₹60,000  over 4 years, an 80% return. I couldn't be more satisfied with their strategic approach and expertise!",
+    text: "Investing ₹90,000 with Eagle Hunt Capitalist for 2 years yielded ₹1,39,500, a 55% growth. Their commitment to professionalism and results is commendable!",
   },
 ];
 

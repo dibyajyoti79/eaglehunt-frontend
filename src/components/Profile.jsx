@@ -275,7 +275,7 @@ const Profile = () => {
           <div className="bg-gray-800 p-6 rounded-lg">
             <h3 className="font-semibold text-gray-300">Interest Rate:</h3>
             <p className="text-gray-100">
-              {userProfile.investmentPlan.interest}%
+              {userProfile.investmentPlan.totalInterest}%
             </p>
           </div>
 
