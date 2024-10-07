@@ -31,22 +31,34 @@ export const navItems = [
 
 export const testimonials = [
   {
-    user: "Jagannth Behera",
+    user: "Jagannath Behera",
     company: "Stellar Solutions",
     image: teamMember1,
-    text: "I invested ₹20,000 with Eagle Hunt Capitalist for 6 months and received ₹22,400 back, a 12% return exactly as promised. A fantastic way to grow my savings in a smooth manner!  ",
+    text: "I invested ₹20,000 with Eagle Hunt Capitalist for 6 months and received ₹22,400 back, a 12% return exactly as promised. A fantastic way to grow my savings in a smooth manner!",
   },
   {
     user: "Biswajit Chakraborty",
     company: "Blue Horizon Technologies",
     image: teamMember2,
-    text: "Last year, I invested ₹30,000 with Eagle Hunt Capitalist for 12 months. My investment grew to ₹37,500 at a 25% return. Their service and support made my experience remarkable and easy!   ",
+    text: "Last year, I invested ₹30,000 with Eagle Hunt Capitalist for 12 months. My investment grew to ₹37,500 at a 25% return. Their service and support made my experience remarkable and easy!",
   },
   {
     user: "Tushar Mahuri",
     company: "Finable",
     image: teamMember3,
-    text: "I took a leap and invested ₹40,000 for 2 years with Eagle Hunt Capitalist. My investment grew to ₹62,000, a 55% return. The growth exceeded expectations and proved their expertise!     ",
+    text: "I took a leap and invested ₹40,000 for 2 years with Eagle Hunt Capitalist. My investment grew to ₹62,000, a 55% return. The growth exceeded expectations and proved their expertise!",
+  },
+  {
+    user: "Ankita Roy",
+    company: "NextWave Innovations",
+    image: teamMember3,
+    text: "I decided to invest ₹50,000 with Eagle Hunt Capitalist for 3 years, and my return was ₹85,000, a 70% growth. Their professionalism and consistent results are truly commendable!",
+  },
+  {
+    user: "Rahul Sharma",
+    company: "TechSphere Solutions",
+    image: teamMember3,
+    text: "Eagle Hunt Capitalist helped me grow my investment of ₹60,000  over 4 years, an 80% return. I couldn't be more satisfied with their strategic approach and expertise!",
   },
 ];
 
